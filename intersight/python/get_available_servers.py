@@ -2,6 +2,9 @@
 """
     Script to get UCS Blade Servers in IMM and UCSM Domain with No Profiles
 
+    Uses Intersight oAuth Authentication. 
+    Create oAuth App under Intersight > Settings > oAuth 2.0 > Create oAuth 2.0  to get the ClientID and ClientSecret.
+
     Python libraries needed to run this script:
       pip install python-dotenv requests
 """
@@ -50,21 +53,25 @@ if __name__ == '__main__':
     # Get oAuth Token
     token = get_token(client_id, client_secret)
 
-    # Get API Endpoint Data
+    # Get Server Profile Data
     server_profiles = get_api_data(token, client_id, client_secret, get_profiles_url)
 
+    # Get Server Moids with Profiles
     server_moid_with_profiles = []
     for profile in server_profiles['Results']:
         if profile['AssignedServer'] != None:
             server_moid_with_profiles.append(profile['AssignedServer']['Moid'])
 
+    # Get Blade Server Data
     get_blades_url = "https://intersight.com/api/v1/compute/Blades?$top=1000"
     imm_blades = get_api_data(token, client_id, client_secret, get_blades_url)
 
+    # Get Blade Moids
     imm_blade_moids = []
     for blade in imm_blades['Results']:
         imm_blade_moids.append(blade['Moid'])
-    
+
+    # Get Server Moids without Profiles
     server_moids_without_profile = []
     for blade_moid in imm_blade_moids:
         if blade_moid not in server_moid_with_profiles:
