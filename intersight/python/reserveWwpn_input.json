@@ -1,0 +1,22 @@
+[
+  {
+    "org_name"            : "default",
+    "fcpool_name"         : "demoxwwpn",
+    "sp_name"             : "demo1",
+    "sanconn_policy_name" : "demox",
+    "vhba0_name"          : "vhba0",
+    "vhba1_name"          : "vhba1",
+    "vhba0_wwpn"          : "20:00:00:25:B5:AA:AA:31",
+    "vhba1_wwpn"          : "20:00:00:25:B5:AA:AA:32"
+  },
+  {
+    "org_name"            : "default",
+    "fcpool_name"         : "demoxwwpn",
+    "sp_name"             : "demo2",
+    "sanconn_policy_name" : "demox",
+    "vhba0_name"          : "vhba0",
+    "vhba1_name"          : "vhba1",
+    "vhba0_wwpn"          : "20:00:00:25:B5:AA:AA:21",
+    "vhba1_wwpn"          : "20:00:00:25:B5:AA:AA:22"
+  }
+]
